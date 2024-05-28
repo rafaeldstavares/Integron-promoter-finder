@@ -20,10 +20,6 @@ In this repository you find a custom R function to identify integron's endogenou
 - [seqinr]()
 - [spgs]()
 
-library()
-  library(tidyverse)
-  library(spgs)
-
 
 
 
