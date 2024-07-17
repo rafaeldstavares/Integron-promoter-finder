@@ -1,6 +1,6 @@
 
 
-Greetings, integrons enthusiasts!!
+Greetings, integron enthusiasts!!
 
 In this repository you find a custom R function to identify integron's endogenous promoters in fasta formatted sequence files. Briefly, this function searchs for exact matchs of the correctly spaced -10 and -35 box of integron promoters described to date (reviewed by [Fonseca and Vicente, 2022](https://doi.org/10.3390/microorganisms10020224)).
 
@@ -16,9 +16,9 @@ In this repository you find a custom R function to identify integron's endogenou
 
 ## Required packages
 
-- [tidyverse]()
-- [seqinr]()
-- [spgs]()
+- [tidyverse](https://cran.r-project.org/web/packages/tidyverse/index.html)
+- [seqinr](https://cran.r-project.org/web/packages/seqinr/index.html)
+- [spgs](https://cran.rstudio.com/web/packages/spgs/index.html)
 
 
 
