@@ -38,8 +38,8 @@ int.PromoterFINDER <- function(file.path, integron.class){
     # Attribute the position of the hit to a table with all information
     tab <- tibble(seqID = name.seq,
                   promoterID = i,
-                  start = unlist(lapply(promoter.localization, function(x) x[1])),
-                  end = unlist(lapply(promoter.localization, function(x) x[2]))) %>% 
+                  start = unlist(lapply(promoter.localization, function(x) x[1]))-nchar(word(str_replace_all(promoter.database$sequence_pattern[promoter.database == i], '\\+', ' '), 1)),
+                  end = unlist(lapply(promoter.localization, function(x) x[2]))-nchar(word(str_replace_all(promoter.database$sequence_pattern[promoter.database == i], '\\+', ' '), -1))) %>% 
       dplyr::filter(!is.na(start))
     cat("  Detection step sucessfull", i, "\n")
     # Bind the results together
@@ -65,9 +65,8 @@ int.PromoterFINDER <- function(file.path, integron.class){
     # Attribute the position of the hit to a table with all information
     tab <- tibble(seqID = name.seq,
                   promoterID = i,
-                  length = nchar(sequences) %>% as.vector(),
-                  end = length - unlist(lapply(promoter.localization, function(x) x[1])),
-                  start = length - unlist(lapply(promoter.localization, function(x) x[2]))) %>% 
+                  start = unlist(lapply(promoter.localization, function(x) x[1]))-nchar(word(str_replace_all(promoter.database$sequence_pattern[promoter.database == i], '\\+', ' '), 1)),
+                  end = unlist(lapply(promoter.localization, function(x) x[2]))-nchar(word(str_replace_all(promoter.database$sequence_pattern[promoter.database == i], '\\+', ' '), -1))) %>% 
       dplyr::filter(!is.na(start))
     cat("  Detection step sucessfull", i, "\n")
     # Bind the results together
