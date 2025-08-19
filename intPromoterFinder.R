@@ -21,6 +21,7 @@ int.PromoterFINDER <- function(file.path, integron.class){
   cat(" Fasta file read sucessfully", "\n")
   name.seq <- names(test.seq)
   sequences <- seqinr::getSequence(test.seq, as.string = TRUE)
+  length.seq <- getLength(test.seq)
   # Importing the table with promoter sequences
   promoter.database <- read_tsv(file = 'promoter.database.tsv')
   promoID <- (promoter.database %>% dplyr::filter(class == integron.class))$promoterID
@@ -40,7 +41,12 @@ int.PromoterFINDER <- function(file.path, integron.class){
                   promoterID = i,
                   start = unlist(lapply(promoter.localization, function(x) x[1]))-nchar(word(str_replace_all(promoter.database$sequence_pattern[promoter.database == i], '\\+', ' '), 1)),
                   end = unlist(lapply(promoter.localization, function(x) x[2]))-nchar(word(str_replace_all(promoter.database$sequence_pattern[promoter.database == i], '\\+', ' '), -1))) %>% 
-      dplyr::filter(!is.na(start))
+      dplyr::filter(!is.na(start)) %>% 
+      mutate(start.x = length - start,
+             end.x = length - end,
+             start = end.x + 1,
+             end = start.x + 1) %>% 
+      dplyr::select(-c(length, start.x, end.x))
     cat("  Detection step sucessfull", i, "\n")
     # Bind the results together
     tab.results.fwd <- rbind(tab.results.fwd,
