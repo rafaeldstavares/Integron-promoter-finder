@@ -39,6 +39,7 @@ int.PromoterFINDER <- function(file.path, integron.class){
     # Attribute the position of the hit to a table with all information
     tab <- tibble(seqID = name.seq,
                   promoterID = i,
+                  length = length.seq,
                   start = unlist(lapply(promoter.localization, function(x) x[1]))-nchar(word(str_replace_all(promoter.database$sequence_pattern[promoter.database == i], '\\+', ' '), 1)),
                   end = unlist(lapply(promoter.localization, function(x) x[2]))-nchar(word(str_replace_all(promoter.database$sequence_pattern[promoter.database == i], '\\+', ' '), -1))) %>% 
       dplyr::filter(!is.na(start)) %>% 
@@ -71,6 +72,7 @@ int.PromoterFINDER <- function(file.path, integron.class){
     # Attribute the position of the hit to a table with all information
     tab <- tibble(seqID = name.seq,
                   promoterID = i,
+                  length = length.seq,
                   start = unlist(lapply(promoter.localization, function(x) x[1]))-nchar(word(str_replace_all(promoter.database$sequence_pattern[promoter.database == i], '\\+', ' '), 1)),
                   end = unlist(lapply(promoter.localization, function(x) x[2]))-nchar(word(str_replace_all(promoter.database$sequence_pattern[promoter.database == i], '\\+', ' '), -1))) %>% 
       dplyr::filter(!is.na(start))
