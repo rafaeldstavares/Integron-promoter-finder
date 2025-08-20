@@ -73,7 +73,7 @@ int.PromoterFINDER <- function(file.path, integron.class){
       mutate(start.x = length - start,
             end.x = length - end,
             start = end.x + 1,
-            end = start.x + 1)
+            end = start.x + 1) %>%
       dplyr::select(-c(length, start.x, end.x))
     cat("  Detection step sucessfull", i, "\n")
     # Bind the results together
